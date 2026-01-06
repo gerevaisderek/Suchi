@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alkol Menü</title>
+    <style>
+        /* CSS kodları (noodle-tr.html'deki ile aynı olmalı) */
+        /* Eğer ayrı bir CSS dosyası kullanmıyorsanız, buraya aynı CSS kodlarını yapıştırın. */
+        /* Basitlik adına, sadece özgün stilleri bırakıyorum ve önceki koddaki tüm CSS'in burada olduğunu varsayıyorum. */
+
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; }
+        .header-top { position: sticky; top: 0; z-index: 100; background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); padding-bottom: 5px; }
+        .category-scroll { display: flex; overflow-x: scroll; padding: 10px 10px 5px 10px; white-space: nowrap; }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .category-button { display: inline-block; padding: 8px 15px; margin-right: 8px; border: 1px solid #ddd; border-radius: 20px; text-decoration: none; color: #333; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
+        .category-button.active { background-color: #e04e4e; color: white; border-color: #e04e4e; }
+        .cover-image { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .category-title { padding: 15px; font-size: 24px; font-weight: bold; color: #333; }
+        .product-list { 
+    padding: 0 15px 70px 15px; 
+}
+
+/* Ürün Kartı */
+.product-item { 
+    display: flex; 
+    align-items: center; 
+    background-color: white; 
+    margin-bottom: 12px; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); 
+    padding: 12px; 
+    position: relative; 
+}
+
+/* Ürün Görseli */
+.product-item img { 
+    width: 85px; 
+    height: 85px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    margin-right: 15px; 
+}
+
+/* Bilgi Alanı Kapsayıcısı */
+.product-info { 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    text-align: left; 
+    overflow: hidden; /* Taşmaları önlemek için */
+}
+
+/* Ürün Adı */
+.product-name { 
+    font-size: 15px; 
+    font-weight: bold; 
+    color: #222; 
+    margin-bottom: 4px; 
+    line-height: 1.3;
+}
+
+/* YENİ: Ürün Açıklaması (Mobilde Sığması İçin) */
+.product-description {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Metni 2 satırda keser */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Alt Bilgiler (Süre ve Fiyat Yan Yana) */
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-details { 
+    font-size: 12px; 
+    color: #999; 
+}
+
+.product-price { 
+    font-size: 14px; 
+    color: #d35400; /* Sushi temasına uygun turuncu/kahve tonu */
+    font-weight: bold; 
+}
+        .tag { position: absolute; top: 10px; right: 10px; background-color: #e04e4e; color: white; padding: 4px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+        .tag.sold-out { background-color: #777; }
+        .tag.popular { background-color: #e04e4e; }
+        .footer-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fff; border-top: 1px solid #ddd; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .footer-nav a, .footer-nav button { text-decoration: none; color: #333; font-size: 24px; background: none; border: none; padding: 5px 15px; cursor: pointer; }
+        .footer-nav .plus-button { color: #fff; background-color: #e04e4e; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 30px; line-height: 1; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+        .footer-nav .badge { background-color: #e04e4e; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; position: absolute; right: 80px; bottom: 30px; }
+        .product-details { font-size: 12px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="header-top">
+        <div class="category-scroll">
+             <a href="menu-tr.html" class="category-button">ANA MENÜ</a>
+            <a href="specialrolls-tr.html" class="category-button">SPECIAL ROLLS</a>
+            <a href="classicrolls-tr.html" class="category-button">CLASSIC ROLLS</a>
+            <a href="bento-tr.html" class="category-button">BENTO</a>
+             <a href="noodle-tr.html" class="category-button">NOODLE</a>
+              <a href="temaki-tr.html" class="category-button">TEMAKI</a>
+                  <a href="onigiri-tr.html" class="category-button">ONIGIRI</a>
+                       <a href="onigiri-tr.html" class="category-button">ALKOLSÜZ İÇECEKLER</a>
+            <a href="#" class="category-button active">ALKOLLÜ İÇECEKLER</a>
+        
+      
+            </div>
+    </div>
+
+    <img src="sarap.avif" alt="Şarap" class="cover-image">
+    <div class="category-title">ALKOLLÜ İÇECEKLER</div>
+
+    <div class="product-list">
+        
+        <div class="product-item">
+            <img src="Bomonti.avif" alt="Bomonti">
+            <div class="product-info">
+                <div class="product-name">Bomonti Filtresiz 50cl</div>
+                <div class="product-price">200 TL</div>
+                
+            </div>
+        </div>
+
+<div class="product-item">
+            <img src="Efes.avif" alt="Efes">
+            <div class="product-info">
+                <div class="product-name">Efes 50cl</div>
+                <div class="product-price">180 TL</div>
+                
+            </div>
+        </div>
+
+<div class="product-item">
+            <img src="Beyaz Sarap.avif" alt="Beyaz Şarap">
+            <div class="product-info">
+                <div class="product-name">Kadeh Beyaz Şarap</div>
+                <div class="product-price">185 TL</div>
+                
+            </div>
+        </div>
+
+  <div class="product-item">
+            <img src="Kırmızı Sarap.avif" alt="Kırmızı Şarap">
+            <div class="product-info">
+                <div class="product-name">Kadeh Kırmızı Şarap</div>
+                <div class="product-price">185 TL</div>
+                
+            </div>
+        </div>    
+        
+          
+        </div>  
+
+        
+    </div>
+
+    
+
+</body>
+</html>

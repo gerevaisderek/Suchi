@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ana Menü (Türkçe)</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    .menu-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-bottom: 90px; /* alt navigasyon için boşluk */
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .header .back-arrow { font-size: 24px; margin-right: 15px; text-decoration: none; color: #333; }
+    .header h1 { font-size: 24px; color: #333; margin: 0; }
+
+    /* Grid - kesin 3 sütun, satır akışı sabit */
+    .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        grid-auto-flow: row;
+        grid-auto-rows: auto;
+        align-items: start; /* içerikler aynı hizada başlar */
+    }
+
+   .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .menu-grid {
+        /* PC: Sabit 3 Sütun ayarı */
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
+    }
+    .menu-container {
+        /* DÜZELTME: PC'de kartları ortada daha kompakt toplamak için max genişliği düşürülüyor.
+           900px yerine 700px (veya 650px) deneyelim. */
+        max-width: 650px; 
+    }
+}
+
+    .menu-item {
+        display: block; /* önemli: anchor tam blok olsun */
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+        text-decoration: none;
+        min-width: 0; /* overflow hesaplarını düzeltir */
+        margin: 0;
+        padding: 0;
+        grid-column: auto; /* hiçbir öğe sütunları zorla kaplamasın */
+    }
+
+    .menu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    .menu-item img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .menu-item p {
+        margin: 10px 0;
+        font-weight: bold;
+        color: #333;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .footer-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 100;
+    }
+    .footer-nav a, .footer-nav button {
+        text-decoration: none;
+        color: #333;
+        font-size: 24px;
+        background: none;
+        border: none;
+        padding: 5px 15px;
+        cursor: pointer;
+    }
+    .footer-nav .plus-button {
+        color: #fff;
+        background-color: #e04e4e;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 1;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .footer-nav .badge {
+        background-color: #e04e4e;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 10px;
+        position: absolute;
+        right: 80px;
+        bottom: 30px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="menu-container">
+    <div class="header">
+        <a href="index.html" class="back-arrow">&leftarrow;</a>
+        <h1>Ana Menü</h1>
+    </div>
+
+    <div class="menu-grid">
+
+        <a href="specialrolls-tr.html" class="menu-item">
+            <img src="specialrolls.avif" alt="Special Rolls">
+            <p>SPECIAL ROLLS</p>
+        </a>
+
+        <a href="classicrolls-tr.html" class="menu-item">
+            <img src="sushirolls.avif" alt="Sushi Rolls">
+            <p>CLASSIC ROLLS</p>
+        </a>
+
+        <a href="bento-tr.html" class="menu-item">
+            <img src="bento.avif" alt="Bento">
+            <p>BENTO</p>
+        </a>
+
+        <a href="noodle-tr.html" class="menu-item">
+            <img src="noodle.avif" alt="Noodle">
+            <p>NOODLE</p>
+        </a>
+
+        <a href="temaki-tr.html" class="menu-item">
+            <img src="temaki.avif" alt="Temaki">
+            <p>TEMAKI</p>
+        </a>
+
+        <a href="onigiri-tr.html" class="menu-item">
+            <img src="onigiri.avif" alt="Onigiri">
+            <p>ONIGIRI</p>
+        </a>
+
+        <a href="alkolsuz-tr.html" class="menu-item">
+            <img src="kola.avif" alt="Alkolsüz İçecekler">
+            <p>ALKOLSÜZ İÇECEKLER</p>
+        </a>
+
+        <a href="alkollu-tr.html" class="menu-item">
+            <img src="sarap.avif" alt="Alkollü İçecekler">
+            <p>ALKOLLÜ İÇECEKLER</p>
+        </a>
+
+      
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

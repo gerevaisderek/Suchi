@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Menu</title>
+    <style>
+        /* CSS kodları (noodle-tr.html'deki ile aynı olmalı) */
+        /* Eğer ayrı bir CSS dosyası kullanmıyorsanız, buraya aynı CSS kodlarını yapıştırın. */
+        /* Basitlik adına, sadece özgün stilleri bırakıyorum ve önceki koddaki tüm CSS'in burada olduğunu varsayıyorum. */
+
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; }
+        .header-top { position: sticky; top: 0; z-index: 100; background-color: white; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); padding-bottom: 5px; }
+        .category-scroll { display: flex; overflow-x: scroll; padding: 10px 10px 5px 10px; white-space: nowrap; }
+        .category-scroll::-webkit-scrollbar { display: none; }
+        .category-button { display: inline-block; padding: 8px 15px; margin-right: 8px; border: 1px solid #ddd; border-radius: 20px; text-decoration: none; color: #333; font-size: 14px; transition: background-color 0.3s, color 0.3s; }
+        .category-button.active { background-color: #e04e4e; color: white; border-color: #e04e4e; }
+        .cover-image { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .category-title { padding: 15px; font-size: 24px; font-weight: bold; color: #333; }
+        .product-list { padding: 0 15px 70px 15px; }
+          .product-item { 
+    display: flex; 
+    align-items: center; 
+    background-color: white; 
+    margin-bottom: 12px; 
+    border-radius: 12px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); 
+    padding: 12px; 
+    position: relative; 
+}
+
+/* Ürün Görseli */
+.product-item img { 
+    width: 85px; 
+    height: 85px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    margin-right: 15px; 
+}
+
+/* Bilgi Alanı Kapsayıcısı */
+.product-info { 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    text-align: left; 
+    overflow: hidden; /* Taşmaları önlemek için */
+}
+
+/* Ürün Adı */
+.product-name { 
+    font-size: 15px; 
+    font-weight: bold; 
+    color: #222; 
+    margin-bottom: 4px; 
+    line-height: 1.3;
+}
+
+/* YENİ: Ürün Açıklaması (Mobilde Sığması İçin) */
+.product-description {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Metni 2 satırda keser */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Alt Bilgiler (Süre ve Fiyat Yan Yana) */
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-details { 
+    font-size: 12px; 
+    color: #999; 
+}
+
+.product-price { 
+    font-size: 16px; 
+    color: #d35400; /* Sushi temasına uygun turuncu/kahve tonu */
+    font-weight: bold; 
+}
+        .tag { position: absolute; top: 10px; right: 10px; background-color: #e04e4e; color: white; padding: 4px 8px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+        .tag.sold-out { background-color: #777; }
+        .tag.popular { background-color: #e04e4e; }
+        .footer-nav { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fff; border-top: 1px solid #ddd; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; }
+        .footer-nav a, .footer-nav button { text-decoration: none; color: #333; font-size: 24px; background: none; border: none; padding: 5px 15px; cursor: pointer; }
+        .footer-nav .plus-button { color: #fff; background-color: #e04e4e; border-radius: 50%; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 30px; line-height: 1; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+        .footer-nav .badge { background-color: #e04e4e; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; position: absolute; right: 80px; bottom: 30px; }
+        .product-details { font-size: 12px; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div class="header-top">
+        <div class="category-scroll">
+           <a href="menu-en.html" class="category-button">MAIN MENU</a>
+<a href="specialrolls-en.html" class="category-button">SPECIAL ROLLS</a>
+<a href="classicrolls-en.html" class="category-button">CLASSIC ROLLS</a>
+<a href="#" class="category-button active">BENTO</a>
+<a href="noodle-en.html" class="category-button">NOODLES</a>
+<a href="temaki-en.html" class="category-button">TEMAKI</a>
+<a href="onigiri-en.html" class="category-button">ONIGIRI</a>
+<a href="onigiri-en.html" class="category-button">SOFT DRINKS</a>
+<a href="alkollu-en.html" class="category-button">ALCOHOLIC DRINKS</a>
+         
+            </div>
+    </div>
+
+    <img src="bentokapak.avif" alt="Bento Kapak Resmi" class="cover-image">
+    <div class="category-title">BENTO</div>
+
+    <div class="product-list">
+        
+        <div class="product-item">
+            <img src="bento1.avif" alt="Bento 1">
+            <div class="product-info">
+                <div class="product-name">BENTO 1</div>
+                  <div class="product-description">Chicken Katsu, Steamed Rice, Seasonal Salad, and Vegetable Spring Rolls</div>
+
+                 <div class="product-meta"><div class="product-details">🕒 25 dk</div>
+                <div class="product-price">620 TL</div>
+            </div>
+          
+            </div>
+            <div class="tag popular">Popüler</div>
+        </div>
+
+        <div class="product-item">
+            <img src="bento2.avif" alt="Bento 2">
+            <div class="product-info">
+                <div class="product-name">BENTO 2</div>
+                    <div class="product-description">Salmon Teriyaki, California Roll, Steamed Rice, Goma Wakame (Seaweed Salad) and Edamame</div>
+
+                 <div class="product-meta"> <div class="product-details">🕒 25 dk</div>
+                <div class="product-price">660 TL</div></div>
+            
+            </div>
+        </div>
+
+        <div class="product-item">
+            <img src="bento3.avif" alt="Bento 3">
+            <div class="product-info">
+                <div class="product-name">BENTO 3</div>
+                 <div class="product-description">Beef Noodles, Shrimp Tempura, Mixed Nigiri, Special Roll, and Japanese Pickles</div>
+
+                <div class="product-meta"><div class="product-details">🕒 25 dk</div>
+                <div class="product-price">770 TL</div></div>
+              
+            </div>
+        </div>
+
+     
+        
+    </div>
+
+    
+
+</body>
+</html>

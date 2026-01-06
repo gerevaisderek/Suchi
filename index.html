@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evde Sushi | Welcome</title>
+    
+    <style>
+        /* CSS Reset ve Temel Ayarlar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Renk Paleti */
+            --color-primary: #ffff; /* Buton Rengi */
+            --color-background: #000;
+            --color-text: #FFFFFF;
+        }
+
+        /* Genel Stil: Mobil Öncelikli ve Dikey Ortalamalı */
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; 
+            background-image: url('welcome.avif'); /* ⬅️ Kendi resim adınız */
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+        }
+
+        /* Dil Seçimi (Sağ Üst Köşe) */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            opacity: 0.9;
+            padding: 8px 15px; /* Tıklama alanını büyütme */
+        }
+
+        /* Ana İçerik Alanı */
+        .main-content {
+            z-index: 2; 
+            padding: 20px;
+            width: 90%; 
+            max-width: 400px; /* İçeriği büyük ekranlarda sınırlar */
+        }
+
+        /* Logo Alanı */
+        .logo-container {
+            background-color: var(--color-text);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .logo {
+            max-width: 120px;
+            height: auto;
+            display: block;
+        }
+        
+        /* Başlıklar */
+        .title-sushi {
+            font-size: 2.2em;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+            font-weight: 600;
+            
+        }
+        .subtitle-welcome {
+            font-size: 1.4em;
+            margin-bottom: 50px;
+        }
+
+        /* Menü Butonu */
+        .menu-button {
+            background-color: var(--color-primary);
+            color: #8B0000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .menu-button:hover {
+            background-color: #d17c76;
+        }
+
+        /* Powered By Bölümü */
+        .powered-by {
+            margin-top: 50px;   
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="language-toggle" onclick="toggleLanguage()">
+        <span id="lang-display">TR</span>
+    </div>
+
+    <div class="main-content">
+        <div class="logo-container">
+            <img src="logo.avif" alt="Sushi Logo" class="logo">
+        </div>
+
+        <h1 class="title-sushi">Roll-On Sushi</h1>
+        <p class="subtitle-welcome" id="greeting">Hoş Geldiniz</p>
+
+        <a href="#" class="menu-button" id="menu-btn">Menüye Gidin</a>
+
+        <div class="powered-by">
+            <span>Powered by</span>
+            <div class="qrall-logo">
+                <span>Derek Dijital</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DÜZELTME 2: JavaScript kodu, tek ID (menu-btn) üzerinden metin ve href güncellemesi yapar.
+        const langData = {
+            'tr': {
+                greeting: 'Hoş Geldiniz',
+                button: 'Menüye Gidin',
+                menuHref: 'menu-tr.html',
+                langDisplay: 'EN'
+            },
+            'en': {
+                greeting: 'Welcome',
+                button: 'Go to Menu',
+                menuHref: 'menu-en.html',
+                langDisplay: 'TR'
+            }
+        };
+
+        let currentLang = 'tr';
+
+        function updateContent(lang) {
+            // Dil metinlerini güncelle
+            document.getElementById('greeting').textContent = langData[lang].greeting;
+            document.getElementById('lang-display').textContent = langData[lang].langDisplay;
+
+            // Menü butonunu güncelle
+            const menuButton = document.getElementById('menu-btn');
+            if (menuButton) {
+                menuButton.textContent = langData[lang].button;
+                menuButton.href = langData[lang].menuHref; // Hata burada giderildi
+            }
+            
+            // HTML dil etiketini ve mevcut dili kaydet
+            document.documentElement.lang = lang; 
+            currentLang = lang;
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'tr' ? 'en' : 'tr';
+            updateContent(newLang);
+        }
+
+        // Sayfa yüklendiğinde varsayılan dili ayarla
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent('tr');
+        });
+    </script>
+
+</body>
+</html>
